@@ -1,4 +1,4 @@
-const getTodos = (callback) => {
+const getTodos = (resource, callback) => {
     const request = new XMLHttpRequest(); // This doesn't work because it's for grandpas
 
     request.addEventListener('readystatechange', () => {
@@ -12,11 +12,11 @@ const getTodos = (callback) => {
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
     // context ^
 
-    request.open('GET', `https://jsonplaceholder.typicode.com/todos/`);
+    request.open('GET', resource); // Could also go right to callback/todos.json
     request.send();
 };
 
-getTodos((err, data) => {
+getTodos(`https://jsonplaceholder.typicode.com/todos/`, (err, data) => {
     console.log('callback fired');
     if (err){
         console.log(err);
